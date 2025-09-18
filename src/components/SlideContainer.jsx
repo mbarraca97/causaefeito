@@ -23,7 +23,7 @@ const SlideContainer = ({ slides, currentSlide, side }) => {
   const slideVariants = {
     enter: (direction) => ({
       y: direction > 0 ? '100%' : '-100%',
-      opacity: 0
+      opacity: 1
     }),
     center: {
       y: 0,
@@ -31,7 +31,7 @@ const SlideContainer = ({ slides, currentSlide, side }) => {
     },
     exit: (direction) => ({
       y: direction > 0 ? '-100%' : '100%',
-      opacity: 0
+      opacity: 1
     })
   };
 
@@ -40,8 +40,8 @@ const SlideContainer = ({ slides, currentSlide, side }) => {
   const slide = getCurrentSlide();
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
-      <AnimatePresence mode="wait" custom={direction}>
+    <div className="relative w-full h-screen overflow-hidden bg-gray-900">
+      <AnimatePresence initial={false} custom={direction}>
         <motion.div
           key={`${side}-${slideIndex}`}
           custom={direction}
@@ -50,8 +50,9 @@ const SlideContainer = ({ slides, currentSlide, side }) => {
           animate="center"
           exit="exit"
           transition={{
-            duration: 0.8,
-            ease: [0.16, 1, 0.3, 1]
+            type: "tween",
+            duration: 1.2,
+            ease: [0.25, 0.46, 0.45, 0.94]
           }}
           className="absolute inset-0"
         >

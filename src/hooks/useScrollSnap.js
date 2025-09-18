@@ -13,7 +13,7 @@ export const useScrollSnap = (totalSlides) => {
       // Reset scrolling state after animation completes
       setTimeout(() => {
         setIsScrolling(false);
-      }, 800);
+      }, 1400);
     }
   }, [totalSlides, isScrolling]);
 
@@ -44,7 +44,7 @@ export const useScrollSnap = (totalSlides) => {
         } else {
           prevSlide();
         }
-      }, 50);
+      }, 100);
     };
 
     const handleKeyDown = (e) => {
