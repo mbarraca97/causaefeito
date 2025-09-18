@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import Slide from './Slide';
+import { slides } from './slides';
 
-const SlideContainer = ({ slides, currentSlide, side }) => {
+const SlideContainer = ({ slideComponents, currentSlide, side }) => {
   const getSlideIndex = () => {
     if (side === 'left') {
       // Left side: shows odd slides (0, 2, 4, ...)
@@ -12,10 +12,10 @@ const SlideContainer = ({ slides, currentSlide, side }) => {
     }
   };
 
-  const getCurrentSlide = () => {
+  const getCurrentSlideComponent = () => {
     const slideIndex = getSlideIndex();
-    // Return the slide if it exists, otherwise return the last slide
-    return slides[Math.min(slideIndex, slides.length - 1)];
+    // Return the slide component if it exists, otherwise return the last slide component
+    return slideComponents[Math.min(slideIndex, slideComponents.length - 1)];
   };
 
   const slideVariants = {
@@ -35,7 +35,7 @@ const SlideContainer = ({ slides, currentSlide, side }) => {
 
   const direction = side === 'left' ? -1 : 1;
   const slideIndex = getSlideIndex();
-  const slide = getCurrentSlide();
+  const SlideComponent = getCurrentSlideComponent();
 
   return (
     <div className="relative w-full h-screen overflow-hidden bg-gray-900">
@@ -54,13 +54,7 @@ const SlideContainer = ({ slides, currentSlide, side }) => {
           }}
           className="absolute inset-0"
         >
-          <Slide
-            title={slide.title}
-            content={slide.content}
-            backgroundColor={slide.backgroundColor}
-            textColor={slide.textColor}
-            index={slideIndex}
-          />
+          <SlideComponent />
         </motion.div>
       </AnimatePresence>
     </div>
