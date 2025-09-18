@@ -4,20 +4,18 @@ import Slide from './Slide';
 const SlideContainer = ({ slides, currentSlide, side }) => {
   const getSlideIndex = () => {
     if (side === 'left') {
-      // Left side shows previous slides (scrolls up)
-      return Math.max(0, currentSlide - 1);
+      // Left side: shows odd slides (0, 2, 4, ...)
+      return currentSlide * 2;
     } else {
-      // Right side shows next slides (scrolls down)  
-      return Math.min(slides.length - 1, currentSlide + 1);
+      // Right side: shows even slides (1, 3, 5, ...)
+      return currentSlide * 2 + 1;
     }
   };
 
   const getCurrentSlide = () => {
-    if (side === 'left') {
-      return currentSlide === 0 ? slides[0] : slides[Math.max(0, currentSlide - 1)];
-    } else {
-      return currentSlide === slides.length - 1 ? slides[slides.length - 1] : slides[Math.min(slides.length - 1, currentSlide + 1)];
-    }
+    const slideIndex = getSlideIndex();
+    // Return the slide if it exists, otherwise return the last slide
+    return slides[Math.min(slideIndex, slides.length - 1)];
   };
 
   const slideVariants = {
@@ -51,7 +49,7 @@ const SlideContainer = ({ slides, currentSlide, side }) => {
           exit="exit"
           transition={{
             type: "tween",
-            duration: 1.2,
+            duration: 0.9,
             ease: [0.25, 0.46, 0.45, 0.94]
           }}
           className="absolute inset-0"

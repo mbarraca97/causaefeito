@@ -13,7 +13,7 @@ export const useScrollSnap = (totalSlides) => {
       // Reset scrolling state after animation completes
       setTimeout(() => {
         setIsScrolling(false);
-      }, 1400);
+      }, 1100);
     }
   }, [totalSlides, isScrolling]);
 

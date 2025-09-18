@@ -36,7 +36,7 @@ const Homepage = () => {
     }
   ];
 
-  const { currentSlide } = useScrollSnap(slides.length);
+  const { currentSlide } = useScrollSnap(Math.ceil(slides.length / 2));
 
   return (
     <div className="fixed inset-0 overflow-hidden">
@@ -83,7 +83,7 @@ const Homepage = () => {
       {/* Navigation Dots */}
       <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-10">
         <div className="flex space-x-3">
-          {slides.map((_, index) => (
+          {Array.from({ length: Math.ceil(slides.length / 2) }, (_, index) => (
             <div
               key={index}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
