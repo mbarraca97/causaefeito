@@ -1,49 +1,84 @@
+import { useState, useEffect } from 'react';
+import RightNavbar from '../RightNavbar';
+
 const Slide8 = ({ selectedProject, onProjectClick }) => {
   const defaultProject = {
     id: 1,
     number: '01',
     name: 'Villa Marina',
-    image: '/project1.jpg',
+    images: ['/project1-1.png', '/project1-2.png', '/project1-3.png'],
     href: '/projects/villa-marina'
   };
 
   const project = selectedProject || defaultProject;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleClick = () => {
+  // Reset image index when project changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [project.id]);
+
+  const handleBackgroundClick = () => {
+    // Cycle to next image
+    setCurrentImageIndex((prevIndex) => 
+      (prevIndex + 1) % project.images.length
+    );
+  };
+
+  const handleNavigationClick = (e) => {
+    e.stopPropagation();
     if (onProjectClick) {
       onProjectClick(project.href);
     }
   };
 
   return (
-    <div 
-      className="w-full h-screen bg-cover bg-center bg-no-repeat cursor-pointer relative group"
-      style={{
-        backgroundImage: `url(${project.image})`
-      }}
-      onClick={handleClick}
-    >
+    <div className="w-full h-screen flex flex-col">
+      <RightNavbar />
+      <div 
+        className="flex-1 bg-cover bg-center bg-no-repeat cursor-pointer relative group"
+        style={{
+          backgroundImage: `url(${project.images[currentImageIndex]})`
+        }}
+        onClick={handleBackgroundClick}
+      >
       {/* Overlay for better text visibility */}
       <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300"></div>
       
-      {/* Project info overlay */}
-      <div className="absolute bottom-8 left-8 text-white z-10">
-        <div className="font-josefin-sans text-[18px] font-light uppercase tracking-wide mb-2">
-          Project {project.number}
+      {/* Plus sign with hover effect - 40px above labels */}
+      <div className="absolute bottom-[100px] left-8 flex items-center group-plus">
+        <div 
+          className="w-[65px] h-[65px] bg-white rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 transition-all duration-300 z-20 group"
+          onClick={handleNavigationClick}
+        >
+          <svg className="w-[65px] h-[65px] text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path  strokeWidth={1} d="M12 4v16m8-8H4" />
+          </svg>
         </div>
-        <h2 className="font-kinta text-[48px] leading-tight mb-4">
-          {project.name}
-        </h2>
-        <div className="font-josefin-sans text-[14px] opacity-80 group-hover:opacity-100 transition-all duration-300">
-          Click to view project details →
+        
+        {/* Typewriter "ver mais" text on hover of plus button only */}
+        <div className="ml-4 overflow-hidden max-w-0 group-hover:max-w-xs transition-all duration-700 ease-out">
+          <span 
+            className="text-white font-josefin-sans text-[30px] whitespace-nowrap inline-block cursor-pointer hover:underline"
+            onClick={handleNavigationClick}
+          >
+            ver mais
+          </span>
         </div>
       </div>
 
-      {/* Hover effect indicator */}
-      <div className="absolute top-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-all duration-300">
-        <div className="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center">
-          <span className="text-[24px]">→</span>
+      {/* Bottom labels with 20px margin and space-between */}
+      <div className="absolute bottom-2 left-8 right-8 flex justify-between text-white font-josefin-sans text-[16px] uppercase tracking-wide">
+        <div className="mb-[0px]">
+          <span>PORTO</span>
         </div>
+        <div className="mb-[20px]">
+          <span>APARTAMENTO</span>
+        </div>
+        <div className="mb-[20px]">
+          <span>RESIDENCIAL</span>
+        </div>
+      </div>
       </div>
     </div>
   );

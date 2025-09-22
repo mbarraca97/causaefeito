@@ -1,10 +1,42 @@
 
+import LeftNavbar from '../LeftNavbar';
+
 const projects = [
-  { id: 1, number: '01', name: 'Villa Marina', image: '/project1.jpg', href: '/projects/villa-marina' },
-  { id: 2, number: '02', name: 'Urban Loft', image: '/project2.jpg', href: '/projects/urban-loft' },
-  { id: 3, number: '03', name: 'Modern Office', image: '/project3.jpg', href: '/projects/modern-office' },
-  { id: 4, number: '04', name: 'Coastal House', image: '/project4.jpg', href: '/projects/coastal-house' },
-  { id: 5, number: '05', name: 'City Apartment', image: '/project5.jpg', href: '/projects/city-apartment' },
+  { 
+    id: 1, 
+    number: '01', 
+    name: 'Villa Marina', 
+    images: ['/project1-1.png', '/project1-2.png', '/project1-3.png'], 
+    href: '/projects/villa-marina' 
+  },
+  { 
+    id: 2, 
+    number: '02', 
+    name: 'Urban Loft', 
+    images: ['/project2-1.png', '/project2-2.png', '/project2-3.png'], 
+    href: '/projects/urban-loft' 
+  },
+  { 
+    id: 3, 
+    number: '03', 
+    name: 'Modern Office', 
+    images: ['/project3-1.png', '/project3-2.png', '/project3-3.png'], 
+    href: '/projects/modern-office' 
+  },
+  { 
+    id: 4, 
+    number: '04', 
+    name: 'Coastal House', 
+    images: ['/project4-1.png', '/project4-2.png', '/project4-3.png'], 
+    href: '/projects/coastal-house' 
+  },
+  { 
+    id: 5, 
+    number: '05', 
+    name: 'City Apartment', 
+    images: ['/project5-1.png', '/project5-2.png', '/project5-3.png'], 
+    href: '/projects/city-apartment' 
+  }
 ];
 
 const Slide7 = ({ onProjectSelect, selectedProject }) => {
@@ -13,7 +45,9 @@ const Slide7 = ({ onProjectSelect, selectedProject }) => {
   };
 
   return (
-    <div className="w-full h-screen flex bg-[#F2EDE7]">
+    <div className="w-full h-screen flex flex-col bg-[#F2EDE7]">
+      <LeftNavbar text="Causa" lightText="Living" />
+      <div className="flex-1 flex bg-[#F2EDE7]">
       {projects.map((project, index) => (
         <div
           key={project.id}
@@ -70,6 +104,7 @@ const Slide7 = ({ onProjectSelect, selectedProject }) => {
           </div>
         </div>
       ))}
+      </div>
     </div>
   );
 };

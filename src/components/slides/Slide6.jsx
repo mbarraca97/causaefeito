@@ -1,10 +1,9 @@
+import RightNavbar from '../RightNavbar';
+
 const Slide6 = () => {
     return (
       <div className="w-full h-screen flex flex-col justify-start items-start bg-[#F2EDE7]">
-        {/* Top Bar */}
-        <div className="h-[75px] bg-[#F2EDE7] w-full text-right items-end flex flex-row items-center justify-end pr-8">
-          <img src="/menu.png" alt="logo" className="w-[33px] h-[22px]" />
-        </div>
+        <RightNavbar />
 
         {/* Main Content - Left Aligned */}
         <div className="flex flex-col items-start pl-8 pt-8">

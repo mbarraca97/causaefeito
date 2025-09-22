@@ -5,7 +5,17 @@ import { useState } from 'react';
 
 const Homepage = () => {
   const { currentSlide } = useScrollSnap(Math.ceil(slides.length / 2));
-  const [selectedProject, setSelectedProject] = useState(null);
+  
+  // Default project (first project)
+  const defaultProject = { 
+    id: 1, 
+    number: '01', 
+    name: 'Villa Marina', 
+    images: ['/project1-1.png', '/project1-2.png', '/project1-3.png'], 
+    href: '/projects/villa-marina' 
+  };
+  
+  const [selectedProject, setSelectedProject] = useState(defaultProject);
 
   const handleProjectSelect = (project) => {
     setSelectedProject(project);
