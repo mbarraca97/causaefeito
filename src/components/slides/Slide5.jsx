@@ -1,18 +1,16 @@
 const Slide5 = () => {
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center px-8 md:px-16 bg-gradient-to-br from-gray-800 to-black text-white">
-      <div className="max-w-2xl text-center">
-        <h1 className="font-josefin-sans text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight">
-          Your Story Begins
-        </h1>
-        
-        <p className="font-josefin-sans text-lg md:text-xl lg:text-2xl leading-relaxed opacity-80">
-          Ready to transform your vision into an unforgettable digital experience? Let's create something amazing together.
+    <div className="w-full h-screen flex flex-col justify-start items-top bg-cover bg-center bg-no-repeat" 
+           style={{
+          backgroundImage: 'url(/sl5.png)'
+        }}>
+      <div className="h-[75px] bg-[#F2EDE7] w-full text-left flex flex-row items-center pl-8">
+        <p className="font-josefin-sans  text-[#413C36] text-[32px] uppercase">
+          Causa
         </p>
-        
-        <div className="mt-12 text-sm opacity-60">
-          Slide 5
-        </div>
+        <p className="font-josefin-sans text-[#413C36] font-light text-[32px] uppercase">
+          Living
+        </p>
       </div>
     </div>
   );

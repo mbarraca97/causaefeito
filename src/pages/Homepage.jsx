@@ -1,9 +1,20 @@
 import { useScrollSnap } from '../hooks/useScrollSnap';
 import SlideContainer from '../components/SlideContainer';
 import { slides } from '../components/slides';
+import { useState } from 'react';
 
 const Homepage = () => {
   const { currentSlide } = useScrollSnap(Math.ceil(slides.length / 2));
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleProjectSelect = (project) => {
+    setSelectedProject(project);
+  };
+
+  const handleProjectClick = (href) => {
+    console.log('Navigate to:', href);
+    // Add navigation logic here
+  };
 
   return (
     <div className="fixed inset-0 overflow-hidden">
@@ -15,6 +26,9 @@ const Homepage = () => {
             slideComponents={slides}
             currentSlide={currentSlide}
             side="left"
+            selectedProject={selectedProject}
+            onProjectSelect={handleProjectSelect}
+            onProjectClick={handleProjectClick}
           />
         </div>
         
@@ -24,6 +38,9 @@ const Homepage = () => {
             slideComponents={slides}
             currentSlide={currentSlide}
             side="right"
+            selectedProject={selectedProject}
+            onProjectSelect={handleProjectSelect}
+            onProjectClick={handleProjectClick}
           />
         </div>
       </div>
@@ -35,6 +52,9 @@ const Homepage = () => {
             slideComponents={slides}
             currentSlide={currentSlide}
             side="left"
+            selectedProject={selectedProject}
+            onProjectSelect={handleProjectSelect}
+            onProjectClick={handleProjectClick}
           />
         </div>
         
@@ -43,6 +63,9 @@ const Homepage = () => {
             slideComponents={slides}
             currentSlide={currentSlide}
             side="right"
+            selectedProject={selectedProject}
+            onProjectSelect={handleProjectSelect}
+            onProjectClick={handleProjectClick}
           />
         </div>
       </div>
