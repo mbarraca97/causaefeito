@@ -46,7 +46,7 @@ const Slide7 = ({ onProjectSelect, selectedProject }) => {
 
   return (
     <div className="w-full h-screen flex flex-col bg-[#F2EDE7]">
-      <LeftNavbar text="Causa" lightText="Living" />
+      <LeftNavbar text="Causa" lightText="Efeito" />
       <div className="flex-1 flex bg-[#F2EDE7]">
       {projects.map((project, index) => (
         <div
