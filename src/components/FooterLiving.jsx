@@ -48,7 +48,8 @@ const FooterLiving = () => {
                 Contactos
               </h3>
               <p className="font-josefin-sans text-[16px] text-white/80">
-               +351  22 339 4650
+               +351  917 085 121
+
               </p>
               <p className="font-josefin-sans text-[16px] text-white/80">
                 geral@causaefeitodecoracao.pt
@@ -59,7 +60,7 @@ const FooterLiving = () => {
                 Loja
               </h3>
               <p className="font-josefin-sans text-[16px] text-white/80">
-              R. de Mouzinho da Silveira 35, 4050-419 Porto
+              R. de Mouzinho da Silveira 43, 4050-419 Porto
               </p>
               <p className="font-josefin-sans text-[16px] text-white/80">
               </p>
@@ -78,7 +79,7 @@ const FooterLiving = () => {
             <img 
               src="/footer-living.png" 
               alt="Causa Living" 
-              className="w-[300px] h-[400px] object-cover"
+              className="w-[250px] h-[350px] object-cover"
             />
           </motion.div>
         )}

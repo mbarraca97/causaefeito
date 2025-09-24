@@ -1,10 +1,13 @@
 import { useScrollSnap } from '../hooks/useScrollSnap';
 import SlideContainer from '../components/SlideContainer';
 import { slides } from '../components/slides';
+import FullPageMenu from '../components/FullPageMenu';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
   const { currentSlide } = useScrollSnap(Math.ceil(slides.length / 2));
+  const navigate = useNavigate();
   
   // Default project (first project)
   const defaultProject = { 
@@ -16,6 +19,7 @@ const Homepage = () => {
   };
   
   const [selectedProject, setSelectedProject] = useState(defaultProject);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleProjectSelect = (project) => {
     setSelectedProject(project);
@@ -23,7 +27,15 @@ const Homepage = () => {
 
   const handleProjectClick = (href) => {
     console.log('Navigate to:', href);
-    // Add navigation logic here
+    navigate(href);
+  };
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleMenuClose = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -39,6 +51,7 @@ const Homepage = () => {
             selectedProject={selectedProject}
             onProjectSelect={handleProjectSelect}
             onProjectClick={handleProjectClick}
+            onMenuClick={handleMenuToggle}
           />
         </div>
         
@@ -51,6 +64,7 @@ const Homepage = () => {
             selectedProject={selectedProject}
             onProjectSelect={handleProjectSelect}
             onProjectClick={handleProjectClick}
+            onMenuClick={handleMenuToggle}
           />
         </div>
       </div>
@@ -65,6 +79,7 @@ const Homepage = () => {
             selectedProject={selectedProject}
             onProjectSelect={handleProjectSelect}
             onProjectClick={handleProjectClick}
+            onMenuClick={handleMenuToggle}
           />
         </div>
         
@@ -76,6 +91,7 @@ const Homepage = () => {
             selectedProject={selectedProject}
             onProjectSelect={handleProjectSelect}
             onProjectClick={handleProjectClick}
+            onMenuClick={handleMenuToggle}
           />
         </div>
       </div>
@@ -101,6 +117,9 @@ const Homepage = () => {
         <div className="animate-bounce">↓</div>
         <div className="mt-2">Scroll to explore</div>
       </div> */}
+
+      {/* Full Page Menu */}
+      <FullPageMenu isOpen={isMenuOpen} onClose={handleMenuClose} />
     </div>
   );
 };

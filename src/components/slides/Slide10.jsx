@@ -1,9 +1,9 @@
 import RightNavbar from '../RightNavbar';
 
-const Slide10 = () => {
+const Slide10 = ({ onMenuClick }) => {
     return (
       <div className="w-full h-screen flex flex-col justify-start items-start bg-[#d6d0c7]">
-        <RightNavbar bgColor="#d6d0c7" />
+        <RightNavbar bgColor="#d6d0c7" onMenuClick={onMenuClick} />
 
         {/* Main Content - Left Aligned */}
         <div className="flex flex-col items-start pl-8 pt-8">

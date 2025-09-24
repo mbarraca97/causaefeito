@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import RightNavbar from '../RightNavbar';
 
-const Slide8 = ({ selectedProject, onProjectClick }) => {
+const Slide8 = ({ selectedProject, onProjectClick, onMenuClick }) => {
   const defaultProject = {
     id: 1,
     number: '01',
@@ -34,7 +34,7 @@ const Slide8 = ({ selectedProject, onProjectClick }) => {
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <RightNavbar />
+      <RightNavbar onMenuClick={onMenuClick} />
       <div 
         className="flex-1 bg-cover bg-center bg-no-repeat cursor-pointer relative group"
         style={{

@@ -78,7 +78,7 @@ const FooterEfeito = () => {
             <img 
               src="/footer-efeito.png" 
               alt="Causa Efeito" 
-              className="w-[300px] h-[400px] object-cover"
+              className="w-[250px] h-[350px] object-cover"
             />
           </motion.div>
         )}

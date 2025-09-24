@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { slides } from './slides';
 
-const SlideContainer = ({ slideComponents, currentSlide, side, selectedProject, onProjectSelect, onProjectClick }) => {
+const SlideContainer = ({ slideComponents, currentSlide, side, selectedProject, onProjectSelect, onProjectClick, onMenuClick }) => {
 
   const getSlideIndex = () => {
     if (side === 'left') {
@@ -64,14 +64,18 @@ const SlideContainer = ({ slideComponents, currentSlide, side, selectedProject, 
             <SlideComponent 
               onProjectSelect={onProjectSelect}
               selectedProject={selectedProject}
+              onMenuClick={onMenuClick}
             />
           ) : isSlide8 ? (
             <SlideComponent 
               selectedProject={selectedProject}
               onProjectClick={onProjectClick}
+              onMenuClick={onMenuClick}
             />
           ) : (
-            <SlideComponent />
+            <SlideComponent 
+              onMenuClick={onMenuClick}
+            />
           )}
         </motion.div>
       </AnimatePresence>
