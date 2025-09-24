@@ -2,12 +2,26 @@ import { useScrollSnap } from '../hooks/useScrollSnap';
 import SlideContainer from '../components/SlideContainer';
 import { slides } from '../components/slides';
 import FullPageMenu from '../components/FullPageMenu';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const Homepage = () => {
-  const { currentSlide } = useScrollSnap(Math.ceil(slides.length / 2));
+  const { currentSlide, setCurrentSlide } = useScrollSnap(Math.ceil(slides.length / 2));
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Handle slide parameter from URL
+  useEffect(() => {
+    const slideParam = searchParams.get('slide');
+    if (slideParam) {
+      const slideNumber = parseInt(slideParam);
+      if (!isNaN(slideNumber) && slideNumber >= 0 && slideNumber < Math.ceil(slides.length / 2)) {
+        setCurrentSlide(slideNumber);
+        // Remove the slide parameter from URL after navigation
+        setSearchParams({});
+      }
+    }
+  }, [searchParams, setCurrentSlide, setSearchParams]);
   
   // Default project (first project)
   const defaultProject = { 
@@ -119,7 +133,7 @@ const Homepage = () => {
       </div> */}
 
       {/* Full Page Menu */}
-      <FullPageMenu isOpen={isMenuOpen} onClose={handleMenuClose} />
+      <FullPageMenu isOpen={isMenuOpen} onClose={handleMenuClose} onSlideNavigate={setCurrentSlide} />
     </div>
   );
 };

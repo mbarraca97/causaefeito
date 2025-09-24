@@ -2,6 +2,7 @@ import { useState } from 'react';
 import LeftNavbar from '../components/LeftNavbar';
 import RightNavbar from '../components/RightNavbar';
 import FullPageMenu from '../components/FullPageMenu';
+import ProductFooter from '../components/ProductFooter';
 
 const LivingCollection = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,6 +52,13 @@ const LivingCollection = () => {
       description: 'Peça central para momentos especiais, combinando função e elegância.',
       image: '/collection/791f25840274af9fad2fb0742c1ac07423e9dab9.png'
     },
+    {
+      id: 7,
+      name: 'Sofá Modular',
+      reference: 'LC004',
+      description: 'Versatilidade e conforto adaptáveis a diferentes configurações de sala.',
+      image: '/collection/44f6520e85b7c9423698ff2af57fd65c5aef58b4.png'
+    },
 
   ];
 
@@ -79,7 +87,7 @@ const LivingCollection = () => {
       </div>
 
       {/* Main content */}
-      <div className="flex px-5 py-16 items-start">
+      <div className="flex px-5 py-16 items-start overflow-hidden">
         {/* Left side - Title */}
         <div className="w-[200px] flex-shrink-0">
           <h1 className="font-kinta text-[40px] leading-tight" style={{ color: '#413C36' }}>
@@ -89,9 +97,9 @@ const LivingCollection = () => {
 
         {/* Right side - Product Gallery */}
         <div className="flex-1 ml-16">
-          <div className="flex flex-wrap gap-6 items-end">
+          <div className="flex gap-6 items-end overflow-x-auto pb-6 mb-4" style={{ scrollbarWidth: 'thin' }}>
             {products.map((product, index) => (
-              <div key={product.id} className="relative">
+              <div key={product.id} className="relative flex-shrink-0">
                 {/* Product Image */}
                 <div
                   className={`bg-cover bg-center bg-no-repeat cursor-pointer transition-all duration-300 ${
@@ -140,6 +148,19 @@ const LivingCollection = () => {
           </div>
         </div>
       </div>
+
+      {/* Title Section */}
+      <div className="flex justify-center px-5 py-16">
+        <div className="w-[500px] text-center">
+          <h2 className="font-kinta text-[58px] leading-tight" style={{ color: '#413C36' }}>
+            Inspired by Porto, Designed for the World.
+          </h2>
+        </div>
+      </div>
+      <div className="mx-5 h-px bg-black"></div>
+
+      {/* Product Footer */}
+      <ProductFooter bgColor="#F2EDE7" />
 
       {/* Full Page Menu */}
       <FullPageMenu isOpen={isMenuOpen} onClose={handleMenuClose} />

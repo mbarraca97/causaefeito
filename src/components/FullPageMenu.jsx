@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
-const FullPageMenu = ({ isOpen, onClose }) => {
+const FullPageMenu = ({ isOpen, onClose, onSlideNavigate }) => {
+  const navigate = useNavigate();
   const [hoveredItem, setHoveredItem] = useState(null);
   const [language, setLanguage] = useState('PT');
 
@@ -15,6 +17,41 @@ const FullPageMenu = ({ isOpen, onClose }) => {
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === 'PT' ? 'EN' : 'PT');
+  };
+
+  const handleMenuItemClick = (itemId) => {
+    switch (itemId) {
+      case 'about':
+        // Navigate to slides 5 and 6 (slide indices 4,5 = currentSlide 2)
+        if (onSlideNavigate) {
+          onSlideNavigate(2); // This will show slides 5,6 on left,right
+        } else {
+          navigate('/?slide=2');
+        }
+        break;
+      case 'projects':
+        // Navigate to slides 7 and 8 (slide indices 6,7 = currentSlide 3)
+        if (onSlideNavigate) {
+          onSlideNavigate(3); // This will show slides 7,8 on left,right
+        } else {
+          navigate('/?slide=3');
+        }
+        break;
+      case 'living':
+        navigate('/living-collection');
+        break;
+      case 'contacts':
+        // Navigate to footer slides 11 and 12 (slide indices 10,11 = currentSlide 5)
+        if (onSlideNavigate) {
+          onSlideNavigate(5); // This will show slides 11,12 on left,right
+        } else {
+          navigate('/?slide=5');
+        }
+        break;
+      default:
+        break;
+    }
+    onClose();
   };
 
   // Handle Escape key to close menu
@@ -72,17 +109,17 @@ const FullPageMenu = ({ isOpen, onClose }) => {
               {/* Menu Items */}
               <nav className="flex-1 flex flex-col justify-center space-y-0 ">
                 {menuItems.map((item) => (
-                  <motion.a
+                  <motion.button
                     key={item.id}
-                    href="#"
-                    className="font-josefin-sans font-light uppercase text-[16px] text-white hover:text-white/80 transition-colors block"
+                    onClick={() => handleMenuItemClick(item.id)}
+                    className="font-josefin-sans font-light uppercase text-[16px] text-white hover:text-white/80 transition-colors block text-left w-full"
                     onMouseEnter={() => setHoveredItem(item)}
                     onMouseLeave={() => setHoveredItem(null)}
                     whileHover={{ x: 10 }}
                     transition={{ duration: 0.2 }}
                   >
                     {item.label}
-                  </motion.a>
+                  </motion.button>
                 ))}
               </nav>
               

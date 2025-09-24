@@ -1,6 +1,8 @@
 import RightNavbar from '../RightNavbar';
+import { useNavigate } from 'react-router-dom';
 
 const Slide10 = ({ onMenuClick }) => {
+    const navigate = useNavigate();
     return (
       <div className="w-full h-screen flex flex-col justify-start items-start bg-[#d6d0c7]">
         <RightNavbar bgColor="#d6d0c7" onMenuClick={onMenuClick} />
@@ -30,7 +32,7 @@ const Slide10 = ({ onMenuClick }) => {
 <div className="flex flex-row mt-8">
           <div 
           className="w-[65px] h-[65px] bg-[#413C36] rounded-full flex items-center justify-center cursor-pointer hover:bg-opacity-90 transition-all duration-300 z-20 group mt-[-10px]"
-          onClick={'portfolio'}
+          onClick={() => navigate('/living-collection')}
         >
           <svg className="w-[65px] h-[65px] text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path  strokeWidth={1} d="M12 4v16m8-8H4" />
